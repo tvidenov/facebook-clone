@@ -14,6 +14,7 @@
 		0138D0FF1DEA1B9E009FB3F8 /* feedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0138D0FE1DEA1B9E009FB3F8 /* feedCell.swift */; };
 		0138D1011DEA1CF7009FB3F8 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0138D1001DEA1CF7009FB3F8 /* extensions.swift */; };
 		016F747C1DEB193800912832 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F747B1DEB193800912832 /* Post.swift */; };
+		016F747E1DEB457300912832 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F747D1DEB457300912832 /* Posts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0138D0FE1DEA1B9E009FB3F8 /* feedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedCell.swift; sourceTree = "<group>"; };
 		0138D1001DEA1CF7009FB3F8 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		016F747B1DEB193800912832 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		016F747D1DEB457300912832 /* Posts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +60,49 @@
 		0138D0EB1DEA173F009FB3F8 /* facebookFeed */ = {
 			isa = PBXGroup;
 			children = (
+				016F74821DEB46DC00912832 /* Helpers */,
+				016F747F1DEB46B800912832 /* Model */,
+				016F74801DEB46BD00912832 /* View */,
+				016F74811DEB46C600912832 /* Controller */,
 				0138D0EC1DEA173F009FB3F8 /* AppDelegate.swift */,
-				0138D0EE1DEA173F009FB3F8 /* FeedController.swift */,
 				0138D0F31DEA173F009FB3F8 /* Assets.xcassets */,
 				0138D0F51DEA173F009FB3F8 /* LaunchScreen.storyboard */,
 				0138D0F81DEA173F009FB3F8 /* Info.plist */,
-				0138D0FE1DEA1B9E009FB3F8 /* feedCell.swift */,
-				0138D1001DEA1CF7009FB3F8 /* extensions.swift */,
-				016F747B1DEB193800912832 /* Post.swift */,
 			);
 			path = facebookFeed;
+			sourceTree = "<group>";
+		};
+		016F747F1DEB46B800912832 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				016F747B1DEB193800912832 /* Post.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		016F74801DEB46BD00912832 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0138D0FE1DEA1B9E009FB3F8 /* feedCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		016F74811DEB46C600912832 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0138D0EE1DEA173F009FB3F8 /* FeedController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		016F74821DEB46DC00912832 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				016F747D1DEB457300912832 /* Posts.swift */,
+				0138D1001DEA1CF7009FB3F8 /* extensions.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0138D0EF1DEA173F009FB3F8 /* FeedController.swift in Sources */,
+				016F747E1DEB457300912832 /* Posts.swift in Sources */,
 				0138D0FF1DEA1B9E009FB3F8 /* feedCell.swift in Sources */,
 				0138D0ED1DEA173F009FB3F8 /* AppDelegate.swift in Sources */,
 				0138D1011DEA1CF7009FB3F8 /* extensions.swift in Sources */,

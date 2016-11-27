@@ -18,4 +18,6 @@ class Post {
     var numLikes: Int?
     var numComments: Int?
     
+    var statusImageUrl: String?
+    
 }

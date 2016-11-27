@@ -10,9 +10,14 @@ import UIKit
 
 class FeedCell: UICollectionViewCell {
     
+    var imageCache = NSCache<NSString, UIImage>()
+    
     var post: Post? {
         
         didSet{
+            
+            statusImageView.image = nil
+            activityIndicatorView.startAnimating()
             
             if let name = post?.name {
                 let attributedText = NSMutableAttributedString(string: name, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14)])
@@ -40,8 +45,34 @@ class FeedCell: UICollectionViewCell {
                 profileImageView.image = UIImage(named: profileImageName)
             }
             
-            if let statusImageName = post?.statusImageName {
-                statusImageView.image = UIImage(named: statusImageName)
+//            if let statusImageName = post?.statusImageName {
+//                statusImageView.image = UIImage(named: statusImageName)
+//            }
+            
+            
+            if let statusImageUrl = post?.statusImageUrl {
+                
+                if let image = imageCache.object(forKey: statusImageUrl as NSString) {
+                    statusImageView.image = image
+                    activityIndicatorView.stopAnimating()
+                } else {
+                    let url = URL(string: statusImageUrl)
+                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                        if error != nil {
+                            print(error ?? "")
+                            return
+                        }
+                        let image = UIImage(data: data!)
+                        
+                        self.imageCache.setObject(image!, forKey: statusImageUrl as NSString)
+                        
+                        DispatchQueue.main.async {
+                            self.statusImageView.image = image
+                            self.activityIndicatorView.stopAnimating()
+                        }
+                        
+                    }).resume()
+                }
             }
         }
     }
@@ -88,6 +119,15 @@ class FeedCell: UICollectionViewCell {
        let view = UIView()
        view.backgroundColor = UIColor.rgb(red: 226, green: 228, blue: 232)
        return view
+    }()
+    
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        aiv.translatesAutoresizingMaskIntoConstraints = false
+        aiv.hidesWhenStopped = true
+        aiv.color = .black
+        aiv.startAnimating()
+        return aiv
     }()
     
 //    let likeButton: UIButton =  {
@@ -138,6 +178,9 @@ class FeedCell: UICollectionViewCell {
         addSubview(commentButton)
         addSubview(shareButton)
         
+        statusImageView.addSubview(activityIndicatorView)
+        statusImageView.addConstraintsWithFormat(format: "H:|[v0]|", views: activityIndicatorView)
+        statusImageView.addConstraintsWithFormat(format: "V:|[v0]|", views: activityIndicatorView)
         
         addConstraintsWithFormat(format: "H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
         addConstraintsWithFormat(format: "H:|-4-[v0]-4-|", views: statusTextView)
@@ -153,7 +196,6 @@ class FeedCell: UICollectionViewCell {
         
         addConstraintsWithFormat(format: "V:[v0(44)]|", views: commentButton)
         addConstraintsWithFormat(format: "V:[v0(44)]|", views: shareButton)
-
     }
     
 }
