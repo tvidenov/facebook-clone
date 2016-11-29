@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0128C5AD1DECB762004ACFF2 /* OtherControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0128C5AC1DECB762004ACFF2 /* OtherControllers.swift */; };
 		0138D0ED1DEA173F009FB3F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0138D0EC1DEA173F009FB3F8 /* AppDelegate.swift */; };
 		0138D0EF1DEA173F009FB3F8 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0138D0EE1DEA173F009FB3F8 /* FeedController.swift */; };
 		0138D0F41DEA173F009FB3F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0138D0F31DEA173F009FB3F8 /* Assets.xcassets */; };
@@ -15,9 +16,11 @@
 		0138D1011DEA1CF7009FB3F8 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0138D1001DEA1CF7009FB3F8 /* extensions.swift */; };
 		016F747C1DEB193800912832 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F747B1DEB193800912832 /* Post.swift */; };
 		016F747E1DEB457300912832 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F747D1DEB457300912832 /* Posts.swift */; };
+		016F74841DEB481700912832 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F74831DEB481700912832 /* CustomTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0128C5AC1DECB762004ACFF2 /* OtherControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherControllers.swift; sourceTree = "<group>"; };
 		0138D0E91DEA173F009FB3F8 /* facebookFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = facebookFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0138D0EC1DEA173F009FB3F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0138D0EE1DEA173F009FB3F8 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
@@ -28,6 +31,7 @@
 		0138D1001DEA1CF7009FB3F8 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		016F747B1DEB193800912832 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		016F747D1DEB457300912832 /* Posts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
+		016F74831DEB481700912832 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +64,11 @@
 		0138D0EB1DEA173F009FB3F8 /* facebookFeed */ = {
 			isa = PBXGroup;
 			children = (
+				0138D0EC1DEA173F009FB3F8 /* AppDelegate.swift */,
 				016F74821DEB46DC00912832 /* Helpers */,
 				016F747F1DEB46B800912832 /* Model */,
 				016F74801DEB46BD00912832 /* View */,
 				016F74811DEB46C600912832 /* Controller */,
-				0138D0EC1DEA173F009FB3F8 /* AppDelegate.swift */,
 				0138D0F31DEA173F009FB3F8 /* Assets.xcassets */,
 				0138D0F51DEA173F009FB3F8 /* LaunchScreen.storyboard */,
 				0138D0F81DEA173F009FB3F8 /* Info.plist */,
@@ -92,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				0138D0EE1DEA173F009FB3F8 /* FeedController.swift */,
+				016F74831DEB481700912832 /* CustomTabBarController.swift */,
+				0128C5AC1DECB762004ACFF2 /* OtherControllers.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -178,6 +184,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0138D0EF1DEA173F009FB3F8 /* FeedController.swift in Sources */,
+				016F74841DEB481700912832 /* CustomTabBarController.swift in Sources */,
+				0128C5AD1DECB762004ACFF2 /* OtherControllers.swift in Sources */,
 				016F747E1DEB457300912832 /* Posts.swift in Sources */,
 				0138D0FF1DEA1B9E009FB3F8 /* feedCell.swift in Sources */,
 				0138D0ED1DEA173F009FB3F8 /* AppDelegate.swift in Sources */,

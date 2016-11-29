@@ -12,6 +12,16 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     let cellId = "cellId"
     var posts = Posts()
+    
+    let blackBackground = UIView()
+    
+    var statusImageView: UIImageView?
+    
+    let zoomImageView = UIImageView()
+    
+    let navBarCoverView = UIView()
+    
+    let tabBarCover = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +55,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
 //        }
  
         feedCell.post = posts[indexPath]
+        feedCell.feedController = self
         
         return feedCell
     }
@@ -68,5 +79,83 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.collectionViewLayout.invalidateLayout()
     }
     
+    func animateImateView(statusImageView: UIImageView) {
+        
+        self.statusImageView = statusImageView
+        
+        if let startingFrame = statusImageView.superview?.convert(statusImageView.frame, to: nil) {
+            
+            statusImageView.alpha = 0
+            
+            blackBackground.frame = self.view.frame
+            blackBackground.backgroundColor = .black
+            blackBackground.alpha = 0
+            view.addSubview(blackBackground)
+            
+            navBarCoverView.frame = CGRect(x: 0, y: 0, width: 1000, height: 20 + 44)
+            navBarCoverView.backgroundColor = .black
+            navBarCoverView.alpha = 0
+            
+            if let keyWindow = UIApplication.shared.keyWindow {
+                keyWindow.addSubview(navBarCoverView)
+                
+                tabBarCover.frame = CGRect(x: 0, y: keyWindow.frame.height - 49, width: 1000, height: 49)
+                tabBarCover.backgroundColor = .black
+                tabBarCover.alpha = 0
+                keyWindow.addSubview(tabBarCover)
+            }
+            
+            zoomImageView.backgroundColor = UIColor.red
+            zoomImageView.frame = startingFrame
+            zoomImageView.isUserInteractionEnabled = true
+            zoomImageView.image = statusImageView.image
+            zoomImageView.contentMode = .scaleAspectFill
+            zoomImageView.clipsToBounds = true
+            view.addSubview(zoomImageView)
+            
+            zoomImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomOut)))
+            
+            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { 
+                
+                let height = (self.view.frame.width / startingFrame.width) * startingFrame.height
+                
+                let y = self.view.frame.height / 2 - height / 2
+                
+                self.zoomImageView.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: height)
+                
+                self.blackBackground.alpha = 1
+                
+                self.navBarCoverView.alpha = 1
+                
+                self.tabBarCover.alpha = 1
+                
+            }, completion: nil)
+        }
+    }
+    
+    func zoomOut() {
+        
+        if let startingFrame = statusImageView!.superview?.convert(statusImageView!.frame, to: nil) {
+        
+                UIView.animate(withDuration: 0.75, animations: { 
+                    self.zoomImageView.frame = startingFrame
+                    
+                    self.blackBackground.alpha = 0
+                    self.navBarCoverView.alpha = 0
+                    self.tabBarCover.alpha = 0
+                    
+                }, completion: { (didComplete) in
+                    self.zoomImageView.removeFromSuperview()
+                    self.blackBackground.removeFromSuperview()
+                    self.statusImageView?.alpha = 1
+                    self.navBarCoverView.removeFromSuperview()
+                    self.navBarCoverView.alpha = 1
+                    self.tabBarCover.removeFromSuperview()
+                })
+        }
+    }
+    
+    
+
 }
 

@@ -10,6 +10,13 @@ import UIKit
 
 class FeedCell: UICollectionViewCell {
     
+    func animateImage() {
+        
+        feedController?.animateImateView(statusImageView: statusImageView)
+    }
+    
+    var feedController: FeedController?
+    
     var imageCache = NSCache<NSString, UIImage>()
     
     var post: Post? {
@@ -97,6 +104,7 @@ class FeedCell: UICollectionViewCell {
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.text = "This is a test text"
         textView.isScrollEnabled = false
+        textView.isEditable = false
         return textView
     }()
     
@@ -104,6 +112,7 @@ class FeedCell: UICollectionViewCell {
        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -166,6 +175,8 @@ class FeedCell: UICollectionViewCell {
     
     func setupViews() {
         
+        statusImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animateImage)))
+        
         backgroundColor = .white
         
         addSubview(nameLabel)
@@ -197,5 +208,6 @@ class FeedCell: UICollectionViewCell {
         addConstraintsWithFormat(format: "V:[v0(44)]|", views: commentButton)
         addConstraintsWithFormat(format: "V:[v0(44)]|", views: shareButton)
     }
+    
     
 }
