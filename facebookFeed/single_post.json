@@ -1,0 +1,16 @@
+{
+    "post":
+            {
+                "name": "Mark Zuckerberg",
+                "location": {
+                    "city": "San Francisco",
+                    "state": "CA"
+                },
+                "profileImageName": "zuckprofile",
+                "postStatusText": "Getting ready to demo something new we've been building in virtual reality. Tune in tomorrow at 10am pacific time to hear about the future of VR at Oculus Connect.",
+                "statusImageName": "zuckPost",
+                "numLikes": 175,
+                "numComments": 750
+            }
+    
+}

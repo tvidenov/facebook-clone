@@ -10,8 +10,16 @@ import UIKit
 
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    
+    //MARK:- Properties
     let cellId = "cellId"
-    var posts = Posts()
+    
+    //Uncomment this to generate the posts manually
+    //var posts = GeneratePosts()
+    
+    var posts = [Post]()
+    
+    var postsFromJson = Post()
     
     let blackBackground = UIView()
     
@@ -23,14 +31,45 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     let tabBarCover = UIView()
 
+    
+    //MARK:- View
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //Another way to set the caching for the images is to increase the system caching to a higher numbers
+        //Another way to set the caching for the images is to increase the default system caching to a higher numbers
 //        let memoryCapacity = 500 * 1024 * 1024
 //        let diskCapacity = 500 * 1024 * 1024
 //        let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
 //        URLCache.shared = urlCache
+        
+        
+        
+            
+            if let path = Bundle.main.path(forResource: "posts", ofType: "json") {
+                
+                do {
+                    
+                    let data = try (NSData(contentsOfFile: path, options: Data.ReadingOptions.mappedIfSafe))
+                    
+                    let jsonDictionary = try(JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers)) as? [String: Any]
+                    print(jsonDictionary)
+                    
+                    if let postsArray = jsonDictionary?["posts"] as? [[String: Any]] {
+                        
+                            self.posts = [Post]()
+                        
+                        for postDictionary in postsArray {
+                            let post = Post()
+                            post.setValuesForKeys(postDictionary)
+                            self.posts.append(post)
+                        }
+                    }
+                    
+                } catch let err {
+                    print(err)
+                }
+                
+            }
         
         
         navigationItem.title = "Facebook Feed"
@@ -43,8 +82,9 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
     }
 
+    //MARK:- CollectionView
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.numberOfPosts()
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -54,7 +94,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
 //            feedCell.nameLabel.text = name
 //        }
  
-        feedCell.post = posts[indexPath]
+        feedCell.post = posts[indexPath.item]
         feedCell.feedController = self
         
         return feedCell
@@ -62,7 +102,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        if let statusText = posts[indexPath].postStatusText {
+        if let statusText = posts[indexPath.item].postStatusText {
             let rect = NSString(string: statusText).boundingRect(with: CGSize(width: view.frame.width, height: 1000), options: NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin), attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)], context: nil)
             
             let knownHeght: CGFloat = 8 + 44 + 4 + 4 + 200 + 8 + 24 + 8 + 44
@@ -79,6 +119,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.collectionViewLayout.invalidateLayout()
     }
     
+    //MARK:- Animation
     func animateImateView(statusImageView: UIImageView) {
         
         self.statusImageView = statusImageView

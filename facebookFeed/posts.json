@@ -1,0 +1,44 @@
+{
+    "posts": [
+              {
+              "name": "Mark Zuckerberg",
+              "location": {
+              "city": "San Francisco",
+              "state": "CA"
+              },
+              "profileImageName": "zuckprofile",
+              "postStatusText": "Getting ready to demo something new we've been building in virtual reality. Tune in tomorrow at 10am pacific time to hear about the future of VR at Oculus Connect.",
+              "statusImageName": "zuckPost",
+              "numLikes": 175,
+              "numComments": 750,
+              "information": "some information text",
+              "statusImageUrl": "https://dl.dropboxusercontent.com/u/48453924/appAssets/zuckPost.jpg"
+              },
+              {
+              "name": "Elon Musk",
+              "location": {
+              "city": "Los Angeles",
+              "state": "CA"
+              },
+              "profileImageName": "elon",
+              "postStatusText": "\"The Hitchhiker's Guide to the Galaxy\": It taught me that the tough thing is figuring out what questions to ask, but that once you do that, the rest is really easy.",
+              "statusImageName": "elonStatus",
+              "numLikes": 876,
+              "numComments": 202,
+              "statusImageUrl": "https://dl.dropboxusercontent.com/u/48453924/appAssets/elonStatus.jpg"
+              },
+              {
+              "name": "Jimmy Fallon",
+              "location": {
+              "city": "New York",
+              "state": "NY"
+              },
+              "profileImageName": "jimmy",
+              "postStatusText": "Join us tonight to see our special guest - The Weeknd!",
+              "statusImageName": "jimmyStatus",
+              "numLikes": 233,
+              "numComments": 744,
+              "statusImageUrl": "https://dl.dropboxusercontent.com/u/48453924/appAssets/jimmyStatus.jpg"
+              }
+              ]
+}

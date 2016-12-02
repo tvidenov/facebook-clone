@@ -139,16 +139,6 @@ class FeedCell: UICollectionViewCell {
         return aiv
     }()
     
-//    let likeButton: UIButton =  {
-//       let likeButton = UIButton()
-//        likeButton.setTitle("Like", for: .normal)
-//        likeButton.setTitleColor(UIColor.rgb(red: 143, green: 150, blue: 163), for: .normal)
-//        likeButton.setImage(#imageLiteral(resourceName: "like"), for: .normal)
-//        likeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-//        likeButton.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0)
-//        return likeButton
-//    }()
-    
     let likeButton: UIButton = FeedCell.buttonWithTitle(title: "LIke", imageName: "like")
     let commentButton: UIButton = FeedCell.buttonWithTitle(title: "Comment", imageName: "comment")
     let shareButton: UIButton = FeedCell.buttonWithTitle(title: "Share", imageName: "share")
